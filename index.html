@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Weather app</title>
+    <!-- Link Swiper's CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <!-- jquerry cdn -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- bootsrap cdn -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  </head>
+  <style>
+    
+    .current_temp{
+        font-size: 100px;
+    }
+    .small-text{
+        font-size:13px;
+        font-weight: 500;
+    }
+   
+    html,
+    body {
+      position: relative;
+      height: 100%;
+    }
+
+    
+    .swiper {
+      width: 100%;
+      height: 100%;
+    }
+
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* max-height: fit-content !important;
+        min-height: 100px !important;
+        min-width: 150px !important; */
+
+    }
+
+    .swiper-slide img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .week_temp{
+      max-height: fit-content;
+      min-height: 200px;
+      background-color: #acd6ef;
+      
+      z-index: 999;
+    }
+   #myVideo {
+    z-index: -1;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+
+   .daf{
+    display: none !important;
+   }
+    /* swiper */
+  </style>
+  <body class="m-5">
+    <video autoplay muted loop id="myVideo">
+      <source src="Cloudss.mp4" type="video/mp4">
+    </video>
+    
+    <!-- navbar -->
+
+       <nav class="navbar rounded" style="background-color: #acd6ef ;">
+        <div class="container-fluid">
+          <div>
+            <a class="navbar-brand" id="city">City</a>
+            <p id="current_date">Time</p>
+          </div>
+          <form class="d-flex" role="search">
+            <input class="form-control me-2 inputdata" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success search_btn" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
+      <section class="body mt-5">
+        <div class="row m-0">
+            <div class="col-lg-6 col-sm-10 col-md-5">
+             <div class="d-flex align-items-center">
+                <h1 class="current_temp">15</h1>
+                <div>
+                    <span>°C</span>
+                    <h6 id="header_descript">Partially cloudy</h4>
+                </div>
+             </div>
+            </div>
+            <div class="col-6 col-sm-10 col-md-6">
+                <div class="d-flex align-items-center">
+                <div class="main_div">
+                  <img class="cloud_image"src="dummy.png" width="100" height="100">
+                </div>
+                 <div class="cloud_2"></div>
+                    <ul style="list-style: none;">
+                    <li class="text-bg-light p-1" ><span class="mx-2"><img src="https://cdn-icons-png.flaticon.com/128/959/959711.png" alt="" width="20" height="20"></span>Feels like: <span class="feels_like">31</span>C</li>
+                    <li class="text-bg-light mt-2 p-1" ><span class="mx-2 "><img src="https://cdn-icons-png.flaticon.com/128/959/959711.png" alt="" width="20" height="20"></span>Humidity: <span class="humidity">18</span>%</li>
+                    <li  class="text-bg-light mt-2 p-1"> <span class="mx-2 "><img src="https://cdn-icons-png.flaticon.com/128/959/959711.png" alt="" width="20" height="20"></span>Pressure: <span class="pressure">2000</span></li>
+                    </ul>
+                </div>
+           </div>
+        </div>
+      </section>
+      <section class="week_temp mt-5 shadow rounded-5 p-3 ">
+        <div>
+           
+               <!-- Swiper -->
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                       
+                        <div class=" swiper-slide ">
+                            <div class="days_temp  text-center">
+                                <p class="small-text">Monday</p>
+                                <img src="https://img.freepik.com/free-psd/sun-illustration-isolated_23-2150493208.jpg?t=st=1719310681~exp=1719314281~hmac=f93c763e70e97c447d70d9d8c853ded658f27bf6c2313a97736a0fabc34d2d79&w=360"  class="img-fluid" style="width: 100px;" >
+                                <p >23-40°C</p>
+                                <p class="small-text">Cloudy Cloud</p>
+                            </div> 
+                        </div>
+                        <div class=" swiper-slide ">
+                          <div class="days_temp  text-center">
+                              <p class="small-text">Tuesday</p>
+                              <img src="https://img.freepik.com/free-psd/sun-illustration-isolated_23-2150493208.jpg?t=st=1719310681~exp=1719314281~hmac=f93c763e70e97c447d70d9d8c853ded658f27bf6c2313a97736a0fabc34d2d79&w=360"  class="img-fluid" style="width: 100px;" >
+                              <p >44-40°C</p>
+                              <p class="small-text">Broken Cloud</p>
+                          </div> 
+                      </div>
+                      <div class=" swiper-slide ">
+                        <div class="days_temp  text-center">
+                            <p class="small-text">Wednesday</p>
+                            <img src="https://img.freepik.com/free-psd/sun-illustration-isolated_23-2150493208.jpg?t=st=1719310681~exp=1719314281~hmac=f93c763e70e97c447d70d9d8c853ded658f27bf6c2313a97736a0fabc34d2d79&w=360"  class="img-fluid" style="width: 100px;" >
+                            <p >50-40°C</p>
+                            <p class="small-text">Clear Cloud</p>
+                        </div> 
+                    </div>
+                    <div class=" swiper-slide ">
+                      <div class="days_temp  text-center">
+                          <p class="small-text">Thursday</p>
+                          <img src="https://img.freepik.com/free-psd/sun-illustration-isolated_23-2150493208.jpg?t=st=1719310681~exp=1719314281~hmac=f93c763e70e97c447d70d9d8c853ded658f27bf6c2313a97736a0fabc34d2d79&w=360"  class="img-fluid" style="width: 100px;" >
+                          <p >23-30°C</p>
+                          <p class="small-text">Broken Cloud</p>
+                      </div> 
+                  </div>
+                  <div class=" swiper-slide ">
+                    <div class="days_temp  text-center">
+                        <p class="small-text">Friday</p>
+                        <img src="https://img.freepik.com/free-psd/sun-illustration-isolated_23-2150493208.jpg?t=st=1719310681~exp=1719314281~hmac=f93c763e70e97c447d70d9d8c853ded658f27bf6c2313a97736a0fabc34d2d79&w=360"  class="img-fluid" style="width: 100px;" >
+                        <p >13-10°C</p>
+                        <p class="small-text">Smooky Cloud</p>
+                    </div> 
+                </div>
+                    </div>
+                </div>
+           
+        </div>
+      </section>
+      
+   <!-- Swiper JS -->
+   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+   <!-- Initialize Swiper -->
+
+    <script>
+     
+  $(document).ready(function () {
+ 
+  $(".search_btn").click(function (event) {
+   
+      name= $(".inputdata").val();
+      link2='https://api.openweathermap.org/data/2.5/weather?q='+name+'&appid=26348a2fb1d025e5b949aed6b179c249',
+      link='https://api.openweathermap.org/data/2.5/forecast?q='+name+'&appid=26348a2fb1d025e5b949aed6b179c249',
+      $.ajax({
+        method: "GET",
+        url:link2,
+        data: name,
+        dataType: "json",
+        encode: true,
+        error:function(errorThrown){
+          // console.log("error");
+          console.log("City not Found");
+        },
+        success:function (object) {
+          console.log(object);
+          var find_temp=object.main.temp;
+          var kelvinT=Math.round((find_temp-273.15)).toPrecision(2);
+          $('.current_temp').text(kelvinT);
+
+          var feel_temp=object.main.feels_like;
+          var kelvin_Feels=Math.round((feel_temp-273.15)).toPrecision(2);
+          $('.feels_like').text(kelvin_Feels);
+          $('.pressure').text(object.main.pressure);
+          $('.humidity').text(object.main.humidity);
+          var find_descript=object.weather[0].description;
+          $('#header_descript').text(find_descript);
+          var find_image=object.weather[0].icon;
+          console.log(find_image);
+          $('.main_div').remove();
+          // http://openweathermap.org/img/w/${cloud_icon[i]}.png
+          $('.cloud_2').empty();
+          var dummy=` 
+                    <img class="cloud_image"src="http://openweathermap.org/img/w/${find_image}.png" width="150" height="150">
+                 `
+                  $('.cloud_2').append(dummy);
+
+        }
+      
+    })
+    event.preventDefault();
+  
+      $.ajax({
+        method: "GET",
+        url:link,
+        data: name,
+        dataType: "json",
+        encode: true,
+        error:function(errorThrown){
+          // console.log("error");
+          console.log("City not Found");
+        },
+        success:function (object) {
+          $(".swiper-wrapper").empty();
+          console.log(object)
+          var weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+    var array=[5];
+    var dayarray=[5];
+    var nightarray=[5];
+    var cloud_icon=[5];
+    var humidity_array=[5];
+    var a = new Date();
+    let current_day= a.getDay();
+
+    var find_city=object.city.name;
+    $('#city').text(find_city);
+    
+   
+   
+    for(let i=0;i<=5;i++)
+    { 
+       
+       var value=weekday[current_day];
+      
+       if(value==undefined){
+        current_day=0;
+        value=weekday[current_day];
+       }
+       array.push(value);
+       current_day++;
+    }     
+// time          
+const date = new Date();
+const hours = date.getHours().toString().padStart(2, '0');
+const minutes = date.getMinutes().toString().padStart(2, '0');
+const seconds = date.getSeconds().toString().padStart(2, '0');
+
+const justTime = `${hours}:${minutes}:${seconds}`;
+console.log(justTime);
+const justdate=date.toDateString()
+$('#current_date').text(justdate);
+
+// date
+// Extract year, month, and day
+var year = a.getFullYear();
+var month = (a.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-indexed
+var day = a.getDate().toString().padStart(2, '0');
+var justDate = `${year}-${month}-${day}`;
+
+    // for day tempertaure
+    for(let i=0;i<=39;i++)
+    { 
+      const justTime = object.list[i].dt_txt.substring(11); // This will give you "12:00:00"
+      const justdate = object.list[i].dt_txt.substring(0,10); // This will give you "date"
+
+       if(justdate==justDate)
+       {
+     
+         if(object.list[i].dt_txt==justDate + ' 15:00:00')
+          {
+        
+          var day_temperature=object.list[i].main.temp;
+          var kelvinD=Math.round((day_temperature-273.15)).toPrecision(2);
+          dayarray.push(kelvinD);
+          var humidity=object.list[i].main.humidity;
+          humidity_array.push(humidity);
+          var icon=object.list[i].weather[0].icon;
+          cloud_icon.push(icon);
+       
+          }
+          else if(i==0 && justTime=='18:00:00' )
+          {  
+            console.log(i+" "+"same date")
+            var day_temperature='--';
+            dayarray.push(day_temperature);
+            var humidity=object.list[i].main.humidity;
+            humidity_array.push(humidity);
+            var icon=object.list[i].weather[0].icon;
+            cloud_icon.push(icon);
+         
+          }
+          else if(i==0 && justTime=='21:00:00' )
+
+        //  else if(justTime!='00:00:00' && justTime!='03:00:00' &&justTime!='06:00:00' &&justTime!='09:00:00' &&justTime!='12:00:00' &&justTime!='15:00:00' && justTime!='18:00:00' && justTime=='21:00:00')
+          {
+            console.log(i+" "+"same date")
+          var day_temperature='--';
+          dayarray.push(day_temperature);
+          var humidity=object.list[i].main.humidity;
+          humidity_array.push(humidity);
+          var icon=object.list[i].weather[0].icon;
+          cloud_icon.push(icon);
+         
+          }
+          if(justTime=='21:00:00')
+          {
+            console.log(i+" "+"same date")
+          var night_temperature=object.list[i].main.temp;
+          var kelvinN=Math.round((night_temperature-273.15)).toPrecision(2);
+          nightarray.push(kelvinN);
+          // var humidity=object.list[i].main.humidity;
+          // humidity_array.push(humidity);
+          // var icon=object.list[i].weather[0].icon;
+         
+          }
+       } 
+    else{
+       if(justTime=='15:00:00' )
+        {
+          console.log(i+" "+"different date")
+          var day_temperature=object.list[i].main.temp;
+          var kelvinD=(day_temperature-273.15).toPrecision(2);
+          dayarray.push(kelvinD);
+          var humidity=object.list[i].main.humidity;
+          humidity_array.push(humidity);
+          var icon=object.list[i].weather[0].icon;
+          cloud_icon.push(icon);
+        
+       }
+       
+      if(i!=0 && justTime=='21:00:00')
+        {
+          console.log(i+" "+"different date")
+          var night_temperature=object.list[i].main.temp;
+          var kelvinN=(night_temperature-273.15).toPrecision(2);
+          nightarray.push(kelvinN);
+          var humidity=object.list[i].main.humidity;
+          humidity_array.push(humidity);
+          
+        }
+      }
+    }
+     // var days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
+     for(var i=1;i<= 5;i++){
+        var slide=`<div class=" swiper-slide ">
+                                <div class="days_temp  text-center">
+                                    <p class="small-text">${array[i]}</p>
+                                    <img src="http://openweathermap.org/img/w/${cloud_icon[i]}.png"  class="img-fluid" style="width: 80px;" >
+                                    <p class="small-text" >DAYTEMP:${dayarray[i]}°C</p>
+                                    <p class="small-text">NIGHTEMP:${nightarray[i]}°C</p>
+                                    <p class="small-text">Humidity:${humidity_array[i]}%</p>
+                                </div> 
+                            </div>`;
+                           
+    $('.swiper-wrapper').append(slide);
+                          }
+                          swiper.update();
+           
+             
+        // for(let i=0;i< 7;i++)
+        // {
+        //   var kelvin= object.list[i].main.temp;
+        //   var temp=(kelvin-273.15).toPrecision(2);
+        //   // $(".current_temp").html(temp);
+        
+        //   console.log(temp +" index "+ i)
+        // }
+      }
+    })
+    event.preventDefault();
+  });
+   
+    
+     
+});
+    </script>
+   <script>
+     var swiper = new Swiper(".mySwiper", {
+       slidesPerView: 4,
+       spaceBetween: 6,
+      
+       breakpoints: {
+            200: {
+          slidesPerView: 2, // Reduced to 1 for very small screens
+          spaceBetween: 20, // Reduced spacing
+            },
+            500: {
+              slidesPerView: 3, // Adjusted to 2 for slightly larger screens
+              spaceBetween: 10,
+            },
+            768: {
+              slidesPerView: 4, // Adjusted to 3 for medium screens
+              spaceBetween: 20,
+            },
+            1024: {
+              slidesPerView: 5, // Kept as 4 for large screens
+              spaceBetween: 30,
+            },
+       },
+     });
+     
+   </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+</body>
+</html>
